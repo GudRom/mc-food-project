@@ -1,0 +1,11 @@
+@import "../../../../../../../styles/variables.scss";
+
+.requirement {
+  display: flex;
+  align-items: center;
+  // .{styles.requirement__text}
+
+  &__text {
+    margin-left: $space-m;
+  }
+}

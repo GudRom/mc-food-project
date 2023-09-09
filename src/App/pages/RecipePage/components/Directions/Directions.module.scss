@@ -1,0 +1,28 @@
+@import "../../../../../styles/variables.scss";
+
+.directions {
+  // .{styles.directions__list}
+  max-width: 737px;
+  margin-top: 48px;
+
+  &__list {
+    margin-top: $space-xl;
+  }
+
+  // .{styles.directions__step}
+
+  &__step {
+    margin-bottom: $space-m;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // .{styles.directions__stepName}
+
+  &__stepName {
+    margin-bottom: $space-m;
+    margin-bottom: 4px;
+  }
+}

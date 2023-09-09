@@ -1,1 +1,7 @@
+@import "../styles/variables.scss";
 
+.app {
+  max-width: 1440px;
+  margin: auto;
+  background-color: $main-bg;
+}

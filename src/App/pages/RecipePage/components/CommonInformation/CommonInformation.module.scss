@@ -1,0 +1,59 @@
+@import "../../../../../styles/variables.scss", "../../../../../styles/mixins.scss";
+
+.commonInfo {
+  // .{styles.commonInfo__box}
+
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1077px;
+    flex-wrap: wrap;
+  }
+
+  // .{styles.commonInfo__img}
+
+  &__img {
+    width: 448px;
+    height: 298px;
+    border-radius: $border-radius;
+  }
+
+  // .{styles.commonInfo__list}
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 50px 100px;
+  }
+
+  // .{styles.commonInfo__item}
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // .{styles.commonInfo__text}
+
+  &__text {
+    margin-bottom: $space-xxs;
+  }
+
+  // .{styles.commonInfo__summary}
+
+  &__summary {
+    padding: 36px;
+    background-color: $summary-bg;
+    border-radius: $border-radius;
+    margin: 48px 0;
+
+    & > a {
+      color: inherit;
+
+      @include hoverStyle();
+    }
+  }
+}

@@ -1,0 +1,7 @@
+@import "../../../../../../styles/variables.scss";
+.requirementList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xxs;
+  margin-top: 26px;
+}
