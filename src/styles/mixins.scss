@@ -1,0 +1,17 @@
+@import "./variables.scss";
+
+@mixin hoverStyle {
+  transition: all ease-out 0.5;
+  &:hover {
+    transition: all ease-in 0.5;
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
+
+@mixin disableHoverStyle {
+  &:hover {
+    opacity: 1;
+    cursor: initial;
+  }
+}

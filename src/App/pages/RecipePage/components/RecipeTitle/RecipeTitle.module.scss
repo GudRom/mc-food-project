@@ -1,0 +1,13 @@
+@import "../../../../../styles/variables.scss", "../../../../../styles/mixins.scss";
+
+.recipeTitle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 37px;
+  &__iconBtn {
+    transform: rotate(180deg);
+    margin-right: $space-m;
+
+    @include hoverStyle();
+  }
+}

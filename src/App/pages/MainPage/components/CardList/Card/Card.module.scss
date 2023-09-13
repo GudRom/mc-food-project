@@ -1,0 +1,90 @@
+@import "../../../../../../styles/variables.scss";
+
+.listItem {
+  list-style: none;
+  max-width: 360px;
+}
+.card {
+  width: 100%;
+  background-color: $card-bg;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+
+  &__imgWrapper {
+    background-color: $card-image-bg;
+    position: relative;
+
+    &::after {
+      content: "";
+      padding-top: 100%;
+      display: block;
+    }
+  }
+
+  // .card__img
+
+  &__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+  // .card__info-box
+
+  &__infoBox {
+    display: flex;
+    flex-direction: column;
+    padding: $space-l $space-xs;
+  }
+
+  &__caption {
+    margin-bottom: $space-xxs;
+    vertical-align: middle;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      background-image: url(../../../../../../assets/timer.svg);
+      width: 14px;
+      height: 14px;
+      position: relative;
+      top: 1px;
+      margin-right: 5px;
+    }
+
+    // & > svg {
+    //   margin-right: 5px;
+    // }
+  }
+
+  &__title {
+    margin: 0 0 $space-xxs;
+    min-height: 48px;
+  }
+
+  &__subtitle {
+    min-height: 60px;
+  }
+
+  // .card__slot-box
+
+  &__slotBox {
+    display: flex;
+    margin-top: $space-l;
+    align-items: center;
+  }
+
+  // .card__action-slot
+
+  &__actionSlot {
+    margin-left: auto;
+  }
+}

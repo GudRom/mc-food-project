@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+.equipmentIcon {
+  fill: currentColor;
+
+  &_primary > path {
+    fill: $text-primary;
+  }
+
+  &_secondary > path {
+    fill: $text-secondary;
+  }
+
+  &_accent > path {
+    fill: $text-accent;
+  }
+}

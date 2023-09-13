@@ -1,0 +1,56 @@
+@import "../../styles/variables.scss", "../../styles/mixins.scss";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 100px;
+  background-color: #fff;
+  // .{style.header__mainPart}
+
+  &__mainPart {
+    display: flex;
+    align-items: center;
+  }
+
+  // .{style.header__logoLink}
+
+  &__logoLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: $space-l;
+    margin-right: 5.556vw;
+    @include hoverStyle();
+  }
+
+  // .{style.header__navigation}
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    gap: $space-m;
+  }
+
+  // .{style.header__navLink}
+
+  &__navLink {
+    text-decoration: none;
+    text-transform: capitalize;
+    font-family: inherit;
+    @include hoverStyle();
+  }
+
+  // .{style.header__iconButtonBox}
+
+  &__iconButtonBox {
+    display: flex;
+    align-items: center;
+    gap: $space-m;
+  }
+
+  &__iconButton {
+    @include hoverStyle();
+  }
+}

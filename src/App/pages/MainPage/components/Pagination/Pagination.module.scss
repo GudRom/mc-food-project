@@ -1,0 +1,34 @@
+@import "../../../../../styles/variables.scss", "../../../../../styles/mixins.scss";
+
+.pagination {
+  display: flex;
+  align-items: center;
+  &__btn {
+    @include hoverStyle();
+    &_prev {
+      transform: rotate(180deg);
+    }
+
+    &_disable {
+      color: $text-secondary;
+      @include disableHoverStyle();
+    }
+  }
+  // .{styles.pagination__list}
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+  // .{`${styles.pagination__page}
+
+  &__page {
+    padding: 10px;
+    @include hoverStyle();
+    &_active {
+      background-color: $brand;
+      color: $button-primary-text;
+      @include disableHoverStyle();
+    }
+  }
+}

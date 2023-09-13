@@ -1,0 +1,20 @@
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 100px;
+  width: 100%;
+  overflow: hidden;
+
+  &__pattern {
+    position: absolute;
+    background-image: url(../../../assets/recipe-pattern.png);
+    background-position: center;
+    background-size: cover;
+    width: 410px;
+    height: 300px;
+    z-index: 0;
+    top: 0;
+    right: 0;
+  }
+}

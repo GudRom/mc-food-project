@@ -1,0 +1,21 @@
+@import "../../../styles/variables.scss";
+
+.searchIcon {
+  fill: currentColor;
+
+  &_primary > g > path {
+    fill: $text-primary;
+  }
+
+  &_secondary > g > path {
+    fill: $text-secondary;
+  }
+
+  &_accent > g > path {
+    fill: $text-accent;
+  }
+
+  &_white > g > path {
+    fill: white;
+  }
+}

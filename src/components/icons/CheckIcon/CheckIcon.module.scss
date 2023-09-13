@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+.checkIcon {
+  stroke: currentColor;
+
+  &_primary > path {
+    stroke: $text-primary;
+  }
+
+  &_secondary > path {
+    stroke: $checkbox-check-disabled;
+  }
+
+  &_accent > path {
+    stroke: $checkbox-check;
+  }
+}

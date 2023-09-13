@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+.ingredientIcon {
+  fill: currentColor;
+
+  &_primary > g > path {
+    fill: $text-primary;
+  }
+
+  &_secondary > g > path {
+    fill: $text-secondary;
+  }
+
+  &_accent > g > path {
+    fill: $text-accent;
+  }
+}

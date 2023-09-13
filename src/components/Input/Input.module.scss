@@ -1,0 +1,51 @@
+@import "../../styles/variables.scss";
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  background-color: $input-bg;
+  padding: $space-s $space-xs;
+  border: 1px solid $input-border;
+  border-radius: $border-radius;
+
+  &:focus-within {
+    border: 1px solid $input-border-focus;
+  }
+
+  &:has(.input:focus) {
+    border: 1px solid $input-border-focus;
+  }
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  background-color: $input-bg;
+  border: none;
+  padding: 0;
+  font-size: 1.143rem;
+  line-height: 1.25;
+  color: $input-text;
+
+  &:focus {
+    outline: none;
+    color: $input-text-focus;
+  }
+
+  &::placeholder {
+    color: $input-placeholder;
+  }
+
+  &:disabled {
+    color: $input-text-disabled;
+  }
+
+  // .input__icon
+
+  &__icon {
+    margin-left: $space-xxs;
+  }
+}

@@ -1,0 +1,50 @@
+@import '../../styles/variables.scss';
+
+.text {
+  color: currentColor;
+  word-break: break-word;
+  font-family: 'Roboto';
+
+  &_title {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.0909;
+  }
+
+  &_button {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  &_p-20 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  &_p-18 {
+    font-size: 18px;
+    line-height: 1.222;
+  }
+
+  &_p-16 {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  &_p-14 {
+    font-size: 14px;
+    line-height: 1.286;
+  }
+
+  &_primary {
+    color: $text-primary;
+  }
+
+  &_secondary {
+    color: $text-secondary;
+  }
+
+  &_accent {
+    color: $text-accent;
+  }
+}

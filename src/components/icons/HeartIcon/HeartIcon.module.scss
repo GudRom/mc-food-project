@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+.heartIcon {
+  stroke: currentColor;
+
+  &_primary > path {
+    stroke: $text-primary;
+  }
+
+  &_secondary > path {
+    stroke: $text-secondary;
+  }
+
+  &_accent > path {
+    stroke: $text-accent;
+  }
+}

@@ -1,0 +1,35 @@
+@import "../../styles/variables.scss";
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-xxs;
+  min-height: 52px;
+  padding: $space-s $space-l;
+  color: $button-primary-text;
+  background-color: $button-primary-bg;
+  border: none;
+  border-radius: $border-radius;
+
+  &:hover:enabled {
+    background-color: $button-primary-bg-hover;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: $button-primary-bg-active;
+  }
+
+  &_disabled {
+    background-color: $button-primary-bg-disabled;
+  }
+
+  &__spinner {
+    top: -1px;
+    left: 0;
+    & > path {
+      fill: currentColor;
+    }
+  }
+}

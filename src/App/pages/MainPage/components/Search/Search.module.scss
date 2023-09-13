@@ -1,0 +1,32 @@
+@import "../../../../../styles/variables.scss";
+
+.form {
+  width: 100%;
+  // .{styles.form__inputBox}
+
+  &__inputBox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  // .{styles.form__input}
+
+  &__input {
+    width: 100%;
+    flex: 1 0 0;
+  }
+
+  // .{styles.form__searchButton}
+
+  &__searchButton {
+    margin-left: $space-l;
+  }
+
+  // .{styles.form__multidrop}
+
+  &__multidrop {
+    margin-top: $space-l;
+    margin-left: auto;
+  }
+}
