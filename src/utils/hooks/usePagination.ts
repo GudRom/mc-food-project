@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect } from 'react';
-import { Recipe } from 'App/pages/MainPage';
+import { IRecipeCardModel } from 'models/Recipe';
 
-export const usePagination = (limitPosts: number, postsArray: Recipe[] = []) => {
+export const usePagination = (limitPosts: number, postsArray: IRecipeCardModel[] = []) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentPagePosts, setCurrentPagePosts] = useState<Recipe[]>([]);
+  const [currentPagePosts, setCurrentPagePosts] = useState<IRecipeCardModel[]>([]);
   const [pageNumberGroup, setPageNumberGroup] = useState<(string | number)[]>([]);
 
   useEffect(() => {

@@ -1,10 +1,4 @@
-import { useEffect, useState } from 'react';
 import Text from 'components/Text';
-import { GOODS_PER_PAGE } from 'config/config.ts';
-import { Ingredient } from 'types/RecipeDataView';
-import { RecipesDataView } from 'types/RecipesDataView';
-import { usePagination } from 'utils/hooks/usePagination.ts';
-import { getRecipes } from 'utils/http/apiClient';
 import MainImage from '../../../assets/main-recipes-img.png';
 import CardList from './components/CardList/CardList';
 import Pagination from './components/Pagination';
@@ -21,36 +15,6 @@ export interface Recipe {
 }
 
 const MainPage = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const { setNextPage, setPrevPage, changePageTo, currentPage, currentPagePosts, pageNumberGroup } = usePagination(
-    GOODS_PER_PAGE,
-    recipes,
-  );
-
-  const getSubtitleFromArray = (array: Ingredient[]): string => {
-    return array.reduce((acc, current) => acc + ' + ' + current.name, array[0].name);
-  };
-
-  useEffect(() => {
-    getRecipes()
-      .then((res) => {
-        if (res) {
-          setRecipes(
-            res?.data.results.map((recipe: RecipesDataView) => ({
-              id: recipe.id,
-              image: recipe.image,
-              readyInMinutes: recipe.readyInMinutes,
-              title: recipe.title,
-              subtitle: getSubtitleFromArray(recipe.nutrition.ingredients),
-              calories: recipe.nutrition.nutrients.find((el) => el.name === 'Calories')?.amount,
-            })),
-          );
-        } else {
-          throw new Error('request problem');
-        }
-      })
-      .catch((error) => alert(error));
-  }, []);
   return (
     <main className={styles.recipes}>
       <header>
@@ -65,14 +29,8 @@ const MainPage = () => {
           </>
         </Text>
         <Search className={styles.recipes__search} />
-        <CardList className={styles.recipes__cardList} recipes={currentPagePosts} />
-        <Pagination
-          setNextPage={setNextPage}
-          setPrevPage={setPrevPage}
-          currentPage={currentPage}
-          changePageTo={changePageTo}
-          pageNumberGroup={pageNumberGroup}
-        />
+        <CardList className={styles.recipes__cardList} />
+        <Pagination />
       </main>
     </main>
   );

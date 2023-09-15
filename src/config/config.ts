@@ -22,3 +22,5 @@ export const navigationList = [
 ];
 
 export const GOODS_PER_PAGE = 9;
+
+export const baseURL = 'https://api.spoonacular.com/recipes/';

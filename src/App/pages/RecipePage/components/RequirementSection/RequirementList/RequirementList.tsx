@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import { FC, ReactNode } from 'react';
 import Text from 'components/Text';
 import Requirement from './Requirement/Requirement';
@@ -24,4 +25,4 @@ const RequirementList: FC<Props> = ({ list, icon, title }) => {
   );
 };
 
-export default RequirementList;
+export default observer(RequirementList);
