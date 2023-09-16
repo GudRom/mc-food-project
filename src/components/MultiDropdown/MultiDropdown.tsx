@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, memo, useEffect, useRef, useState } from 'react';
 import Input from '../Input';
 import Text from '../Text/Text';
 import ArrowDownIcon from '../icons/ArrowDownIcon';
@@ -88,4 +88,4 @@ const MultiDropdown: FC<MultiDropdownProps> = ({ className, options, value, onCh
   );
 };
 
-export default MultiDropdown;
+export default memo(MultiDropdown);

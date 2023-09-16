@@ -1,12 +1,11 @@
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import Text from 'components/Text';
 import { IRecipeCardModel } from 'models/Recipe';
-import RecipesStore from 'store/RecipesStore';
-import { useLocalStore } from 'utils/hooks/useLocalStore';
+import { useRecipesContext } from '../..';
 import Card from './Card';
 import styles from './CardList.module.scss';
 
@@ -16,17 +15,13 @@ interface Props {
 }
 
 const CardList: FC<Props> = ({ className }) => {
+  const recipes = useRecipesContext();
   const navigate = useNavigate();
   const classCardList = classNames(styles.cardList, className);
-  const recipesStore = useLocalStore(() => new RecipesStore());
-
-  useEffect(() => {
-    recipesStore.getRecipesList();
-  }, [recipesStore]);
 
   return (
     <ul className={classCardList}>
-      {recipesStore.currentPageData.map((el: IRecipeCardModel) => (
+      {recipes?.currentPageData.map((el: IRecipeCardModel) => (
         <Card
           key={el.id}
           image={el.image}

@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
-import { GOODS_PER_PAGE, baseURL } from 'config/config';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { Option } from 'components/MultiDropdown';
+import { GOODS_PER_PAGE, BASE_URL } from 'config/config';
 import { Meta } from 'models/CommonTypes';
 import { ILocalStore } from 'models/CommonTypes/ILocalStore';
 import { IRecipeCardModel, normalizeRecipe } from 'models/Recipe';
@@ -23,7 +24,6 @@ export default class RecipesStore implements ILocalStore {
       pageList: computed,
       meta: computed,
       getRecipesList: action,
-      // getPageList: action,
       setNextPage: action,
       setPrevPage: action,
       changePageTo: action,
@@ -33,7 +33,6 @@ export default class RecipesStore implements ILocalStore {
   get currentPageData(): IRecipeCardModel[] {
     const endIndex = this._currentPage * GOODS_PER_PAGE;
     const startIndex = endIndex - GOODS_PER_PAGE;
-    console.log(this._currentPage);
     return this._recipesList.slice(startIndex, endIndex);
   }
 
@@ -54,8 +53,6 @@ export default class RecipesStore implements ILocalStore {
     const rangeWithDots = [];
     let l;
 
-    console.log(this._recipesList, last, left, right);
-
     for (let i = 1; i <= last; i++) {
       if (i == 1 || i == last || (i >= left && i < right)) {
         range.push(i);
@@ -73,63 +70,9 @@ export default class RecipesStore implements ILocalStore {
       rangeWithDots.push(i);
       l = i;
     }
+
     return rangeWithDots;
   }
-
-  async getRecipesList() {
-    this._meta = Meta.loading;
-
-    const response = await axios.get(`${baseURL}complexSearch?addRecipeNutrition=true&number=20&apiKey=${API_KEY}`);
-
-    runInAction(() => {
-      if (!response) {
-        this._meta = Meta.error;
-      }
-      try {
-        const list = [];
-        this._meta = Meta.success;
-        for (const item of response.data.results) {
-          list.push(normalizeRecipe(item));
-        }
-        this._recipesList = list;
-
-        console.log(this._recipesList, 'req');
-      } catch (error) {
-        alert(error);
-        this._meta = Meta.error;
-        this._recipesList = [];
-      }
-    });
-  }
-
-  // getPageList() {
-  //   const last = this._recipesList.length / GOODS_PER_PAGE;
-  //   const delta = 2;
-  //   const left = this._currentPage - delta;
-  //   const right = this._currentPage + delta + 1;
-  //   const range = [];
-  //   const rangeWithDots = [];
-  //   let l;
-
-  //   for (let i = 1; i <= last; i++) {
-  //     if (i == 1 || i == last || (i >= left && i < right)) {
-  //       range.push(i);
-  //     }
-  //   }
-
-  //   for (const i of range) {
-  //     if (l) {
-  //       if (i - l === 2) {
-  //         rangeWithDots.push(l + 1);
-  //       } else if (i - l !== 1) {
-  //         rangeWithDots.push('...');
-  //       }
-  //     }
-  //     rangeWithDots.push(i);
-  //     l = i;
-  //   }
-  //   return rangeWithDots;
-  // }
 
   setNextPage(): void {
     if (this._currentPage === this._recipesList.length - 1) return;
@@ -145,12 +88,68 @@ export default class RecipesStore implements ILocalStore {
     this._currentPage = pageNumber;
   }
 
-  private readonly _getPageListReaction = reaction(
-    () => this._currentPage,
-    (currentValue) => console.log(currentValue),
-  );
+  async getRecipesList(...args: (string | Option[] | undefined)[]) {
+    const search = args.find((arg) => typeof arg === 'string');
+    const options = args.find((arg) => Array.isArray(arg));
 
-  destroy() {
-    this._getPageListReaction();
+    const condition =
+      !sessionStorage.recipes ||
+      (search && sessionStorage.query !== search) ||
+      (options && sessionStorage.options !== JSON.stringify(options));
+
+    if (condition) {
+      this._meta = Meta.loading;
+
+      const response = await axios.get(
+        `${BASE_URL}complexSearch?addRecipeNutrition=true${this._getReadyParams(...args)}&number=20&apiKey=${API_KEY}`,
+      );
+
+      runInAction(() => {
+        if (!response) {
+          this._meta = Meta.error;
+        }
+
+        try {
+          const list = [];
+          this._meta = Meta.success;
+
+          for (const item of response.data.results) {
+            list.push(normalizeRecipe(item));
+          }
+
+          sessionStorage.setItem('recipes', JSON.stringify(list));
+
+          this._recipesList = list;
+        } catch (error) {
+          alert(error);
+          this._meta = Meta.error;
+          this._recipesList = [];
+        }
+      });
+    } else {
+      this._recipesList = JSON.parse(sessionStorage.recipes);
+    }
   }
+
+  private _getReadyParams = (...args: (string | Option[] | undefined)[]): string => {
+    const search = args[0];
+    const options = args[1];
+    const query: string[] = [];
+
+    if (search && typeof search === 'string') {
+      query.push(`query=${search}`);
+      sessionStorage.setItem('query', search);
+    }
+
+    if (Array.isArray(options) && options.length >= 0) {
+      options.forEach((option) => {
+        query.push(`type=${option.key}`);
+      });
+      sessionStorage.setItem('options', JSON.stringify(options));
+    }
+
+    return query.reduce((acc, current) => acc.concat('&', current), '');
+  };
+
+  destroy() {}
 }

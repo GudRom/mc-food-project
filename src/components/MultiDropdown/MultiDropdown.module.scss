@@ -1,19 +1,41 @@
 @import "../../styles/variables.scss";
 
 .multiDd {
+  position: relative;
   max-width: 370px;
 }
 
 .optionList {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
   list-style: none;
   padding: 0;
   background-color: $dropdown-options-bg;
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.25);
   margin: $space-xxs 0 0;
+  border-radius: $border-radius;
+  max-height: 200px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px $text-secondary;
+    background-color: $scroll-bg;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: $scroll-bg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $brand;
+  }
 }
 
 .option {
   padding: $space-s $space-xs;
+  text-transform: capitalize;
 
   &:hover {
     color: $text-secondary;

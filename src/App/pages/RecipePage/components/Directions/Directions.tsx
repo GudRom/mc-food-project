@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react-lite';
 import { FC } from 'react';
 import Text from 'components/Text';
 import { Step } from 'types/RecipeDataView';
@@ -26,4 +25,4 @@ const Directions: FC<Props> = ({ directions }) => {
   );
 };
 
-export default observer(Directions);
+export default Directions;

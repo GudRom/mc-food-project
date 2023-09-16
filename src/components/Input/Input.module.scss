@@ -29,6 +29,7 @@
   font-size: 1.143rem;
   line-height: 1.25;
   color: $input-text;
+  text-transform: capitalize;
 
   &:focus {
     outline: none;
@@ -37,6 +38,7 @@
 
   &::placeholder {
     color: $input-placeholder;
+    text-transform: capitalize;
   }
 
   &:disabled {
