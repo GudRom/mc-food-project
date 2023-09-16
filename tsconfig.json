@@ -21,9 +21,12 @@
     "baseUrl": "src",
     "paths": {
       "components": ["components/*"],
+      "assets": ["assets/*"],
       "config": ["config/*"],
       "styles": ["styles/*"],
-      "utils": ["utils/*"]
+      "utils": ["utils/*"],
+      "models": ["models/*"],
+      "store": ["store/*"]
     }
   },
   "include": ["src"],

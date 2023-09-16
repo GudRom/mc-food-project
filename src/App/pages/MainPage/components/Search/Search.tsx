@@ -1,9 +1,11 @@
 import classNames from 'classnames';
-import { FC, useState } from 'react';
+import { FC, FormEvent, memo, useCallback, useEffect, useState } from 'react';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import MultiDropdown, { Option } from 'components/MultiDropdown';
 import SearchIcon from 'components/icons/SearchIcon';
+import { DISH_TYPES } from 'config/config';
+import { useRecipesContext } from '../..';
 import styles from './Search.module.scss';
 
 interface Props {
@@ -12,27 +14,39 @@ interface Props {
 
 const Search: FC<Props> = ({ className }) => {
   const [value, setValue] = useState<Option[]>([]);
-  const [querry, setQuerry] = useState<string>('');
+  const [text, setText] = useState<string>('');
+
   const classForm = classNames(styles.form, className);
-  const handleInput = (value: string) => {
-    setQuerry(value);
-  };
-  const onSubmit = () => {
-    // eslint-disable-next-line no-console
-    console.log(querry);
-  };
+  const recipes = useRecipesContext();
+
+  useEffect(() => {
+    sessionStorage.query && setText(sessionStorage.query);
+    sessionStorage.options && setValue(JSON.parse(sessionStorage.options));
+  }, []);
+
+  const handleInput = useCallback((value: string) => {
+    setText(value);
+  }, []);
+
+  const onSubmit = useCallback(
+    (evt: FormEvent) => {
+      evt.preventDefault();
+      recipes?.getRecipesList(text, value);
+    },
+    [recipes, text, value],
+  );
 
   return (
     <form className={classForm} onSubmit={onSubmit}>
       <div className={styles.form__inputBox}>
-        <Input value={querry} className={styles.form__input} onChange={handleInput} />
+        <Input value={text} className={styles.form__input} onChange={handleInput} />
         <Button className={styles.form__searchButton}>
           <SearchIcon />
         </Button>
       </div>
       <MultiDropdown
         className={styles.form__multidrop}
-        options={[]}
+        options={DISH_TYPES}
         value={value}
         onChange={setValue}
         getTitle={(values: Option[]) =>
@@ -43,4 +57,4 @@ const Search: FC<Props> = ({ className }) => {
   );
 };
 
-export default Search;
+export default memo(Search);

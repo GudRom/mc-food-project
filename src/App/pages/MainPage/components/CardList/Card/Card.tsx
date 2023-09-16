@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, ReactNode } from 'react';
+import { FC, MouseEventHandler, ReactNode, memo } from 'react';
 import Text from '../../../../../../components/Text';
 import styles from './Card.module.scss';
 
@@ -56,4 +56,4 @@ const Card: FC<CardProps> = ({ className, image, captionSlot, title, subtitle, c
   );
 };
 
-export default Card;
+export default memo(Card);

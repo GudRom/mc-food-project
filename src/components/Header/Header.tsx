@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import Text from 'components/Text';
 import HeartIcon from 'components/icons/HeartIcon';
 import LogoIcon from 'components/icons/LogoIcon';
 import ProfileIcon from 'components/icons/ProfileIcon';
-import { navigationList } from 'config/config.ts';
+import { NAVIGATION_LIST } from 'config/config.ts';
 import style from './Header.module.scss';
 
 type Props = {
@@ -22,7 +22,7 @@ const Header: FC<Props> = () => {
           </Text>
         </NavLink>
         <nav className={style.header__navigation}>
-          {navigationList.map((link) => (
+          {NAVIGATION_LIST.map((link) => (
             <NavLink to={link.href} key={link.href} className={style.header__navLink} end>
               {({ isActive }) => (
                 <Text view="p-16" tag="span" color={isActive ? 'accent' : 'primary'}>
@@ -41,4 +41,4 @@ const Header: FC<Props> = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

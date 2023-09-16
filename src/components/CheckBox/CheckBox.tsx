@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FC, InputHTMLAttributes } from 'react';
+import { FC, InputHTMLAttributes, memo } from 'react';
 import CheckIcon from '../icons/CheckIcon/CheckIcon';
 import styles from './Checkbox.module.scss';
 
@@ -35,4 +35,4 @@ const CheckBox: FC<CheckBoxProps> = ({ checked, disabled, onChange, className, .
   );
 };
 
-export default CheckBox;
+export default memo(CheckBox);

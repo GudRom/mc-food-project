@@ -10,7 +10,7 @@ interface Props {
   equipment: string[];
 }
 
-const RequirementSection: FC<Props> = ({ ingredients = [], equipment = [] }) => {
+const RequirementSection: FC<Props> = ({ ingredients, equipment }) => {
   return (
     <section className={styles.requirementSection}>
       <RequirementList list={ingredients} icon={<IngredientIcon />} title={'Ingredients'} />

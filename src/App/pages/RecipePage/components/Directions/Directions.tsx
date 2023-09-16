@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Text from 'components/Text';
-import { Step } from 'types/RecipeDataView';
+import { Step } from 'models/Recipe/Step';
 import styles from './Directions.module.scss';
 
 interface Props {
