@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import Text from 'components/Text';
 import HeartIcon from 'components/icons/HeartIcon';
@@ -41,4 +41,4 @@ const Header: FC<Props> = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

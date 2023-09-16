@@ -1,8 +1,8 @@
 import { FC, createContext, useContext, useEffect } from 'react';
+import MainImage from 'assets/main-recipes-img.jpg';
 import Text from 'components/Text';
 import RecipesStore from 'store/RecipesStore';
 import { useLocalStore } from 'utils/hooks/useLocalStore';
-import MainImage from '../../../assets/main-recipes-img.png';
 import CardList from './components/CardList/CardList';
 import Pagination from './components/Pagination';
 import Search from './components/Search/Search';

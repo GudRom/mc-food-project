@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ButtonHTMLAttributes, FC, ReactNode } from 'react';
+import { ButtonHTMLAttributes, FC, ReactNode, memo } from 'react';
 import Loader from '../Loader/Loader';
 import styles from './Button.module.scss';
 
@@ -11,7 +11,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const Button: FC<ButtonProps> = ({ loading, children, disabled, className, ...props }) => {
-  const btnClass = classNames({ [`${className}`]: className }, styles.button, {
+  const btnClass = classNames(className, styles.button, {
     [styles.button_disabled]: disabled,
   });
   return (
@@ -24,4 +24,4 @@ const Button: FC<ButtonProps> = ({ loading, children, disabled, className, ...pr
   );
 };
 
-export default Button;
+export default memo(Button);

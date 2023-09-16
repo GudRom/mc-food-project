@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ReactNode, FC } from 'react';
+import { ReactNode, FC, memo } from 'react';
 import styles from './Text.module.scss';
 
 export type TextProps = {
@@ -46,4 +46,4 @@ const Text: FC<TextProps> = ({ className, view, tag, weight, children, color, ma
   );
 };
 
-export default Text;
+export default memo(Text);

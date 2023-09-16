@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FC, FormEvent, useCallback, useEffect, useState } from 'react';
+import { FC, FormEvent, memo, useCallback, useEffect, useState } from 'react';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import MultiDropdown, { Option } from 'components/MultiDropdown';
@@ -57,4 +57,4 @@ const Search: FC<Props> = ({ className }) => {
   );
 };
 
-export default Search;
+export default memo(Search);
